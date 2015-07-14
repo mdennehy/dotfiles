@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Users/mark.dennehy/Projects/foo/cookbook_nagios/recipes'
+let g:netrw_dirhist_2='/Users/mark.dennehy/Bkup'
+let g:netrw_dirhist_3='/Users/mark.dennehy'
+let g:netrw_dirhist_4='/Users/mark.dennehy/Projects/MSW-5396/msw-nagios-plugins/riak'
+let g:netrw_dirhist_5='/Users/mark.dennehy/Projects/MSW-5509/tmp/cookbook_kafka/spec/system'
+let g:netrw_dirhist_6='/Users/mark.dennehy/Projects/MSW-5663/msw-log-ingestor/lib'
+let g:netrw_dirhist_7='/Users/mark.dennehy/Projects/MSW-5663/tmp/roux/lib/roux'
+let g:netrw_dirhist_8='/Users/mark.dennehy/.bundle'
