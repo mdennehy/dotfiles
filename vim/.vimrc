@@ -37,6 +37,8 @@ Plugin 'altercation/vim-colors-solarized'     " Solarized colorscheme
 Plugin 'elzr/vim-json'                        " JSON support
 Plugin 'todolist.vim'                         " Support for FIXME and TODO and similar tags
 Plugin 'Shougo/unite.vim'                     " REPLACE ALL THE THINGS...
+Plugin 'sqwishy/vim-sqf-syntax'               " SQF (Arma 3 script) support
+Plugin 'jimenezrick/vimerl'                   " Erlang support
 
 call vundle#end()
 filetype plugin indent on
