@@ -14,7 +14,6 @@ set mousehide		" Hide the mouse when typing text
 "set guifont=Monospace\ 12
 "set guifont=Andale\ Mono\ 12
 "set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
-"set guifont=Menlo\ Regular\ 14
 set guifont=Menlo\ Regular:h14
 
 " Make shift-insert work like in Xterm
