@@ -33,7 +33,9 @@ hs.alert.show("Config loaded")
 --------------------------------------------------------------------------------
 
 hs.hotkey.bind(hyper, "l", function()
-    os.execute("/System/Library/CoreServices/Menu\\ Extras/User.menu/Contents/Resources/CGSession -suspend")
+--    os.execute("/System/Library/CoreServices/Menu\\ Extras/User.menu/Contents/Resources/CGSession -suspend")
+--  hs.caffeinate.lockScreen()
+  hs.caffeinate.startScreensaver()
 end)
 
 --------------------------------------------------------------------------------
