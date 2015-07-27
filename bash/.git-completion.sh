@@ -1,4 +1,4 @@
-#!bash
+#
 #
 # bash completion support for core Git.
 #
@@ -1705,7 +1705,7 @@ _git_tag ()
 _git ()
 {
 	local i c=1 command __git_dir
-	
+
 	while [ $c -lt $COMP_CWORD ]; do
 		i="${COMP_WORDS[c]}"
 		case "$i" in
