@@ -15,7 +15,7 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'Valloric/YouCompleteMe'               " Intellisense style autocompletion
+" Plugin 'Valloric/YouCompleteMe'               " Intellisense style autocompletion
 Plugin 'tpope/vim-fugitive'                   " Git integration
 Plugin 'vimwiki/vimwiki'                      " Vimwiki support
 Plugin 'sjl/vitality.vim'                     " Makes vim play nice with iTerm2 and tmux on macs
