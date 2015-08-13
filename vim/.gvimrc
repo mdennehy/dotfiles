@@ -33,10 +33,11 @@ set hlsearch
 
 set background=dark
 
-colorscheme lucius
+"colorscheme lucius
 "colorscheme solarized
 "colorscheme torte
 "colorscheme murphy
+colorscheme zenburn
 
 set lines=50
 set columns=132
