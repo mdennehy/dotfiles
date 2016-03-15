@@ -22,12 +22,13 @@ Plugin 'sjl/vitality.vim'                     " Makes vim play nice with iTerm2 
 Plugin 'Lokaltog/powerline'                   " Very nifty status line
 Plugin 'taglist.vim'                          " TAGS support and explorer
 Plugin 'weynhamz/vim-plugin-minibufexpl'      " Mini Buffer Explorer
+Plugin 'scrooloose/nerdtree'                  " NERDTree file explorer
 Plugin 'tpope/vim-endwise'                    " Adds closing block statments for Ruby,Python,C,shell,etc.
 Plugin 'nathanaelkane/vim-indent-guides'      " Visual indentation guides
 Plugin 'scrooloose/syntastic'                 " Syntax checking support
 Plugin 'vim-ruby/vim-ruby'                    " Ruby support
 Plugin 'klen/python-mode'                     " Python support
-Plugin 'tpope/vim-cucumber'                   " Cucumber unit test support
+" Plugin 'tpope/vim-cucumber'                   " Cucumber unit test support
 Plugin 'godlygeek/tabular'                    " Text alignment/filtering
 Plugin 'plasticboy/vim-markdown'              " Markdown support
 Plugin 'ntpeters/vim-better-whitespace'       " Trailing whitespace detection and removal
@@ -36,9 +37,9 @@ Plugin 'flazz/vim-colorschemes'               " Large library of color schemes
 Plugin 'altercation/vim-colors-solarized'     " Solarized colorscheme
 Plugin 'elzr/vim-json'                        " JSON support
 Plugin 'todolist.vim'                         " Support for FIXME and TODO and similar tags
-Plugin 'Shougo/unite.vim'                     " REPLACE ALL THE THINGS...
+" Plugin 'Shougo/unite.vim'                     " REPLACE ALL THE THINGS...
 Plugin 'sqwishy/vim-sqf-syntax'               " SQF (Arma 3 script) support
-Plugin 'jimenezrick/vimerl'                   " Erlang support
+" Plugin 'jimenezrick/vimerl'                   " Erlang support
 
 call vundle#end()
 filetype plugin indent on
@@ -109,7 +110,7 @@ autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 " I want text wrapping for some file types
 autocmd FileType markdown,plaintex,tex,text setlocal textwidth=78
 
-map <F1> :ls<CR>:b<Space>
+map <F1> :NERDTreeToggle<CR>
 map <F2> !par 80 <CR>
 map <F3> !/usr/local/bin/boxes -r <CR>
 map <F4> !/usr/local/bin/boxes -p h2 -s 80 -i text -t 4 -d pound-cmt <CR>
@@ -166,10 +167,10 @@ inoremap # X#
 :autocmd FileType python set tags+=$HOME/.vim/tags/python.ctags
 :autocmd FileType python set laststatus=2
 
-:autocmd FileType python let g:pymode_rope = 1
+:autocmd FileType python let g:pymode_rope = 0
 :autocmd FileType python let g:pymode_doc = 1
 :autocmd FileType python let g:pymode_doc_key = 'K'
-:autocmd FileType python let g:pymode_lint = 0
+:autocmd FileType python let g:pymode_lint = 1
 :autocmd FileType python let g:pymode_lint_checker = "pyflakes,pep8"
 :autocmd FileType python let g:pymode_lint_write = 1
 :autocmd FileType python let g:pymode_virtualenv = 1
@@ -214,24 +215,24 @@ augroup json_autocmd
 augroup END
 
 " Unite
-let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+" let g:unite_source_history_yank_enable = 1
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+" nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+" nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+" nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+" nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+" nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 
 " Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
+" autocmd FileType unite call s:unite_settings()
+" function! s:unite_settings()
   " Play nice with supertab
-  let b:SuperTabDisabled=1
+  " let b:SuperTabDisabled=1
   " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-endfunction
+  " imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  " imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+" endfunction
 
 
 if has("cscope")

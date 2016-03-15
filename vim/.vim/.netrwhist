@@ -1,5 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/mark.dennehy/Arma/eagleeye/fa3_c57_thetanoansarecoming_v1.Altis/f'
-let g:netrw_dirhist_2='/Users/mark.dennehy/Arma/eagleeye/fa3_c57_thetanoansarecoming_v1.Altis/ws_fnc'
-let g:netrw_dirhist_3='/Users/mark.dennehy/Projects/roux/lib/roux'
+let g:netrw_dirhist_cnt =0

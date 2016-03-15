@@ -63,81 +63,14 @@ hs.hotkey.bind(hyper, "f", function()
     win:setFrame(f)
 end)
 
---------------------------------------------------------------------------------
----  Tiling layout                                                           ---
---------------------------------------------------------------------------------
-
----  Layouts in use
-tiling.set('layouts', {
-  'fullscreen', 
-  'columns',
-  'main-horizontal',
-  'rows',
-  'main-vertical',
-  'gp-vertical'
-})
-
----  Push the window into the exact center of the screen
-local function center(window)
-  frame = window:screen():frame()
-  frame.x = (frame.w / 2) - (frame.w / 4)
-  frame.y = (frame.h / 2) - (frame.h / 4)
-  frame.w = frame.w / 2
-  frame.h = frame.h / 2
-  window:setframe(frame)
-end
-
-hs.hotkey.bind(hyper, "c", function() tiling.togglefloat(center) end)
-hs.hotkey.bind(hyper, "h", function() 
-  hs.alert.show('cycle') 
-  tiling.cyclelayout() 
-  tiling.retile() 
-  hs.alert.show('cycled') 
-end)
-
-hs.hotkey.bind(hyper, "t", function()
-  local space = getspace()
-  hs.alert.show('test')
-  hs.alert.show(tostring(space))
-end)
-
-hs.hotkey.bind(hyper, "j", function() tiling.cycle(1) end)
-hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
-hs.hotkey.bind(hyper, "space", function() tiling.promote() end)
-
 
 --------------------------------------------------------------------------------
----  switch Spaces                                                           ---
+---  Keybindings for starting apps/switching to apps                         ---
 --------------------------------------------------------------------------------
 
-hs.hotkey.bind(hyper, '1', function()
-  spaces.moveToSpace("1")
-end)
-hs.hotkey.bind(hyper, '2', function()
-  spaces.moveToSpace("2")
-end)
-hs.hotkey.bind(hyper, '3', function()
-  spaces.moveToSpace("3")
-end)
-hs.hotkey.bind(hyper, '4', function()
-  spaces.moveToSpace("4")
-end)
-hs.hotkey.bind(hyper, '5', function()
-  spaces.moveToSpace("5")
-end)
-hs.hotkey.bind(hyper, '6', function()
-  spaces.moveToSpace("6")
-end)
-hs.hotkey.bind(hyper, '7', function()
-  spaces.moveToSpace("7")
-end)
-hs.hotkey.bind(hyper, '8', function()
-  spaces.moveToSpace("8")
-end)
-hs.hotkey.bind(hyper, '9', function()
-  spaces.moveToSpace("9")
-end)
-hs.hotkey.bind(hyper, '0', function()
-  spaces.moveToSpace("0")
-end)
-
+hs.hotkey.bind(hyper, "v",      function () hs.application.launchOrFocus("MacVim") end)
+hs.hotkey.bind(hyper, "return", function () hs.application.launchOrFocus("iTerm2") end)
+hs.hotkey.bind(hyper, "w",      function () hs.application.launchOrFocus("Google Chrome") end)
+hs.hotkey.bind(hyper, "s",      function () hs.application.launchOrFocus("Slack") end)
+hs.hotkey.bind(hyper, "y",      function () hs.application.launchOrFocus("Skype") end)
+hs.hotkey.bind(hyper, "m",      function () hs.application.launchOrFocus("Microsoft Outlook") end)
