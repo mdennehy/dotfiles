@@ -7,14 +7,14 @@ set mousehide		" Hide the mouse when typing text
 "set the X11 font to use
 "set guifont=Droid\ Sans\ Mono\ 12
 "set guifont=Source\ Code\ Pro\ 12
-"set guifont=Monaco\ 12
+set guifont=Monaco\ 12
 "set guifont=Inconsolata\ 12
 "set guifont=DEC\ Terminal\ 12
 "set guifont=Gnu\ Unifont\ Mono\ 12
 "set guifont=Monospace\ 12
 "set guifont=Andale\ Mono\ 12
 "set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
-set guifont=Menlo\ Regular:h14
+"set guifont=Menlo\ Regular\ 11
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
