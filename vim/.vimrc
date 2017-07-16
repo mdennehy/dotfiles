@@ -40,6 +40,7 @@ Plugin 'todolist.vim'                         " Support for FIXME and TODO and s
 " Plugin 'Shougo/unite.vim'                     " REPLACE ALL THE THINGS...
 Plugin 'sqwishy/vim-sqf-syntax'               " SQF (Arma 3 script) support
 " Plugin 'jimenezrick/vimerl'                   " Erlang support
+Plugin 'veegee/vim-pic'                       " PIC assembler support
 
 call vundle#end()
 filetype plugin indent on
@@ -152,6 +153,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_asm_checkers = ['gpasm']
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 
