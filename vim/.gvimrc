@@ -7,7 +7,7 @@ set mousehide		" Hide the mouse when typing text
 "set the X11 font to use
 "set guifont=Droid\ Sans\ Mono\ 12
 "set guifont=Source\ Code\ Pro\ 12
-set guifont=Monaco\ 12
+"set guifont=Monaco\ 11
 "set guifont=Inconsolata\ 12
 "set guifont=DEC\ Terminal\ 12
 "set guifont=Gnu\ Unifont\ Mono\ 12
@@ -15,6 +15,9 @@ set guifont=Monaco\ 12
 "set guifont=Andale\ Mono\ 12
 "set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
 "set guifont=Menlo\ Regular\ 11
+"set guifont=Cousine\ 11
+set guifont=Fira\ Code\ Light:h12
+
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
@@ -34,10 +37,10 @@ set hlsearch
 set background=dark
 
 "colorscheme lucius
-"colorscheme solarized
+colorscheme solarized
 "colorscheme torte
 "colorscheme murphy
-colorscheme zenburn
+"colorscheme zenburn
 
 set lines=50
 set columns=132
