@@ -16,7 +16,7 @@ set mousehide		" Hide the mouse when typing text
 "set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
 "set guifont=Menlo\ Regular\ 11
 "set guifont=Cousine\ 11
-set guifont=Fira\ Code\ Light:h12
+set guifont=Fira\ Code\ Light:h14
 
 
 " Make shift-insert work like in Xterm
@@ -37,9 +37,9 @@ set hlsearch
 set background=dark
 
 "colorscheme lucius
-colorscheme solarized
+"colorscheme solarized
 "colorscheme torte
-"colorscheme murphy
+colorscheme murphy
 "colorscheme zenburn
 
 set lines=50

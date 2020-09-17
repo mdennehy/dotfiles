@@ -29,21 +29,25 @@ Plugin 'nathanaelkane/vim-indent-guides'      " Visual indentation guides
 " Plugin 'scrooloose/syntastic'                 " Syntax checking support
 Plugin 'w0rp/ale'                             " ALE for linting support
 Plugin 'vim-ruby/vim-ruby'                    " Ruby support
-Plugin 'klen/python-mode'                     " Python support
+"Plugin 'klen/python-mode'                     " Python support
 Plugin 'godlygeek/tabular'                    " Text alignment/filtering
 Plugin 'plasticboy/vim-markdown'              " Markdown support
-Plugin 'ntpeters/vim-better-whitespace'       " Trailing whitespace detection and removal
+" Plugin 'ntpeters/vim-better-whitespace'       " Trailing whitespace detection and removal
 Plugin 'ColorSchemeMenuMaker'                 " Exposes all colorschemes via menu in gvim
 Plugin 'flazz/vim-colorschemes'               " Large library of color schemes
 Plugin 'altercation/vim-colors-solarized'     " Solarized colorscheme
 Plugin 'elzr/vim-json'                        " JSON support
 Plugin 'todolist.vim'                         " Support for FIXME and TODO and similar tags
+Plugin 'gilsondev/searchtasks.vim'            " Support for FIXME and TODO and similar tags
 " Plugin 'jimenezrick/vimerl'                   " Erlang support
 Plugin 'ctrlpvim/ctrlp.vim'                   " Cross-file/buffer pathname search
 Plugin 'dkprice/vim-easygrep'                 " Cross-file/buffer contents search
 Plugin 'veegee/vim-pic'                       " PIC Assembler support
 Plugin 'airblade/vim-gitgutter'               " Vim gutter indicators for changed lines
-
+" Plugin 'jmcantrell/vim-virtualenv'            " Virtuaenv support
+" Plugin 'davidhalter/jedi-vim'                 " Python autocomplete
+Plugin 'lambdalisue/vim-pyenv'                " PyEnv support
+ 
 
 
 
@@ -134,6 +138,9 @@ autocmd BufNewFile,BufRead Berksfile set filetype=ruby
 autocmd BufNewFile,BufRead Thorfile set filetype=ruby
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 
+" Vertical alignment help with YAML
+autocmd FileType yaml set cuc
+
 " I want text wrapping for some file types
 autocmd FileType markdown,plaintex,tex,text setlocal textwidth=78
 
@@ -153,7 +160,6 @@ map <S-F9> :lopen<CR>
 map <C-F9> :ALEReset<CR>
 map <F10> :TlistToggle <CR>
 
-
 map <C-PageUp> :bn <CR>
 map <C-PageDown> :bp <CR>
 
@@ -170,6 +176,8 @@ map <C-0> :buffers <CR>
 
 map T :TaskList<CR>
 
+map <leader>* :Ggrep --untracked <cword><CR><CR>
+
 let g:miniBufExplSplitBelow=0
 let g:miniBufExplMapCTabSwitchBufs = 1
 
@@ -184,6 +192,9 @@ let g:ale_sign_column_always = 1
 let g:ale_open_list = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_python_flake8_executable = '/Users/mark.dennehy/.pyenv/shims/python'
+let g:ale_python_mypy_executable = '/Users/mark.dennehy/.pyenv/shims/mypy'
+let g:ale_python_pylint_executable = '/Users/mark.dennehy/.pyenv/shims/pylint'
 
 augroup CloseLoclistWindowGroup
   autocmd!
@@ -221,7 +232,6 @@ inoremap # X#
 :autocmd FileType python let g:pymode_lint = 1
 :autocmd FileType python let g:pymode_lint_checker = "pyflakes,pep8"
 :autocmd FileType python let g:pymode_lint_write = 1
-:autocmd FileType python let g:pymode_virtualenv = 1
 :autocmd FileType python let g:pymode_breakpoint = 1
 :autocmd FileType python let g:pymode_breakpoint_key = '<leader>b'
 :autocmd FileType python let g:pymode_syntax = 1
@@ -276,5 +286,5 @@ filetype indent on
 
 set background=dark
 
-colorscheme lucius
-" colorscheme murphy
+" colorscheme lucius
+colorscheme murphy
