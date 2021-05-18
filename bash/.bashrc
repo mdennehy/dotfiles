@@ -103,5 +103,5 @@ fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-rvm use ruby-2.0.0-p643
-rvm gemset use global
+rvm use ruby-2.7.3
+rvm gemset use 273

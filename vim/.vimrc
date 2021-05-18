@@ -111,6 +111,7 @@ set modeline
 set hidden
 set hlsearch
 set incsearch
+set smartcase
 set t_Co=256
 set ch=1
 set autochdir

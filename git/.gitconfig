@@ -1,20 +1,36 @@
 [user]
-  name = Mark Dennehy
-  email = mark.dennehy@workday.com
+	name = Mark Dennehy
+	email = mark.dennehy@workday.com
 
-[help]
-	autocorrect = 1
+[user "https://ghe.megaleo.com"]
+  name = Mark Dennehy
+  user = mark.dennehy
+  email = mark.dennehy@workday.com
+  token = c2f872b055966a9b03394362cbb6bdfb20dec49f
 
 [github]
   user = mdennehy
   token = 08d3a518ea7b7fd4a51db28c0504fc0cb012f4e4
 
+[github "https://ghe.megaleo.com"]
+  name = Mark Dennehy
+  user = mark.dennehy
+  email = mark.dennehy@workday.com
+  token = c2f872b055966a9b03394362cbb6bdfb20dec49f
+
+[help]
+	autocorrect = 1
+
 [branch]
   autosetuprebase = always
 
+[push]
+	default = matching
+
 [core]
-  editor = /usr/local/bin/vim -f
+  editor = /usr/bin/vim -f
   whitespace = trailing-space
+	trustctime = false
 
 [color]
   diff = auto
@@ -48,6 +64,10 @@
   # list existing aliases
   la = "!git config -l | grep alias | cut -c 7-"
 
+  # Get the current branch name (not so useful in itself, but used in
+  # other aliases)
+  branch-name = "!git rev-parse --abbrev-ref HEAD"
+
   # find an alias by the command it aliases
   # (http://brettterpstra.com/2014/08/04/shell-tricks-one-git-alias-to-rule-them-all/)
   finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%_10s\\033[1;37m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
@@ -62,33 +82,24 @@
   summary = log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
   # standard short-hands for daily workflow operations
-  cp = cherry-pick
   st = status -s
-  cl = clone
   ci = commit
   co = checkout
   br = branch
   diff = diff --word-diff
-  dc = diff --cached
-  ir = reset
-  r1 = reset HEAD^
-  r2 = reset HEAD^^
-  rh = reset --hard
-  rh1 = reset HEAD^ --hard
-  rh2 = reset HEAD^^ --hard
-  pr = pull --rebase
+  amend = commit -a --amend
 
-  # commit amend last commit
-  ca = commit -a --amend --reset-author
-  can = commit -a --amend --reset-author --no-edit
+  #  https://twitter.com/garybernhardt/status/1019274268578738181
+  #  Not `git pull --{ff-only,no-ff,rebase}`. You should almost always check
+  #  divergence by doing a graph log of the remote and local branches before
+  #  merging (for that you want my `git r master origin/master` ("r" is
+  #  "recent") or `git l master origin/master` ("l" is "log").
+
+  r = !GIT_NO_PAGER=1 git l -30
+  l = "!. ~/.githelpers && pretty_git_log"
 
   # create new feature branch off master. usage: git nb msw-0001
   nb = !sh -c 'git checkout -b $1 --track origin/master' -
-
-  # create review branch for crucible. usage: git rv 0, git rv 1, ...
-  rv = !sh -c 'cb=$(git rev-parse --abbrev-ref HEAD) && git push origin $cb:$cb-$1' -
-  # list existing crucible review branches for current feature branch
-  rvl = !sh -c 'cb=$(git rev-parse --abbrev-ref HEAD) && git branch --all | grep $cb' -
 
   # create gerrit reviews
   review = "!f() { if [ -z $1 ]; then echo \"Usage: git review <branch> <topic>\"; else if [ -z $2 ]; then git push origin HEAD:refs/for/$1; else git push origin HEAD:refs/for/$1/$2 ; fi; fi; }; f"
@@ -103,9 +114,18 @@
   grv = !sh -c 'cb=$(git rev-parse --abbrev-ref HEAD) && git push origin HEAD:refs/for/master/$cb' -
 
   # as above but adding mia team members as reviewers
-  grvmia = !sh -c 'cb=$(git rev-parse --abbrev-ref HEAD) && git push --receive-pack=\"git receive-pack --reviewer david.beaurpere@workday.com --reviewer brian.martin@workday.com --reviewer daniele.andreatta@workday.com --reviewer gary.boland@workday.com --reviewer owen.sullivan@workday.com --reviewer liam.creagh@workday.com --reviewer brian.brazil@workday.com\" origin HEAD:refs/for/master/$cb' -
-
-  sync = "!f() { echo \"Syncing $1 with master\" && git pull --rebase origin master; }; f"
+  grvmia = !sh -c 'cb=$(git rev-parse --abbrev-ref HEAD) && \
+              git push --receive-pack=\"git receive-pack \
+              --reviewer david.beaurpere@workday.com \
+              --reviewer brian.martin@workday.com \
+              --reviewer daniele.andreatta@workday.com \
+              --reviewer owen.sullivan@workday.com \
+              --reviewer liam.creagh@workday.com \
+              --reviewer andrea.gardiman@workday.com \
+              --reviewer caroline.hyland@workday.com \
+              --reviewer michael.topaloudis@workday.com \
+              --reviewer eamonn.ryan@workday.com\" \
+              origin HEAD:refs/for/master/$cb' -
 
   # Nice branch diagrams
   # from https://stackoverflow.com/questions/1838873/visualizing-branch-topology-in-git/34467298#34467298
@@ -117,3 +137,18 @@
   lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
   lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
   lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+	create-pull-request = !sh -c 'stash pull-request $0 $@'
+
+  #Scylla stuff
+  # create new feature branch off master/develop as appropriate. usage "git nb/nbdev <JIRA_ID>"
+  nbdev = !sh -c 'git checkout -b $1 --track origin/develop' -
+
+  # commit amend locally (effectively keeping your commits compress until ready to send for next review)
+  ca = commit -a --amend --reset-author
+  can = commit -a --amend --reset-author --no-edit
+
+  # keeping your local changes "on top" until ready to send for review
+  pr = pull --rebase
+
+  # pushing to a review branch and forcing it to keep it in sync with local branch
+  grvghe = !sh -c 'branch_name=$(git symbolic-ref --short HEAD) && git push origin $branch_name --force-with-lease'
